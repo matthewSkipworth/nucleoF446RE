@@ -136,32 +136,77 @@ void GPIO_init(GPIO_Handle_t *pGPIO_handle)
 }
 
 
-//void GPIO_deinit(GPIO_regDef_t *pGPIOx)
-//{
+void GPIO_deinit(GPIO_regDef_t *pGPIOx)
+{
+    if (pGPIOx == GPIOA)
+    {
+        GPIOA_REG_RESET();
+    }
+    else if (pGPIOx == GPIOB)
+    {
+        GPIOB_REG_RESET();
+    }
+    else if (pGPIOx == GPIOC)
+    {
+        GPIOC_REG_RESET();
+    }
+    else if (pGPIOx == GPIOD)
+    {
+        GPIOD_REG_RESET();
+    }
+    else if (pGPIOx == GPIOE)
+    {
+        GPIOE_REG_RESET();
+    }
+    else if (pGPIOx == GPIOF)
+    {
+        GPIOF_REG_RESET();
+    }
+    else if (pGPIOx == GPIOG)
+    {
+        GPIOG_REG_RESET();
+    }
+    else if (pGPIOx == GPIOH)
+    {
+        GPIOH_REG_RESET();
+    }
+}
 
-//}
-
-//// GPIO READ/WRITE
-//uint8_t GPIO_read_from_input_pin(GPIO_regDef_t *pGPIOx, uint8_t pin_number)
-//{
-
-//}
-//uint16_t GPIO_read_from_input_port(GPIO_regDef_t *pGPIOx)
-//{
-
-//}
-//void GPIO_write_to_output_pin(GPIO_regDef_t *pGPIOx, uint8_t pin_number, uint8_t value)
-//{
-
-//}
-//void GPIO_write_to_output_port(GPIO_regDef_t *pGPIOx, uint16_t value)
-//{
-
-//}
-//void GPIO_toggle_output_pin(GPIO_regDef_t *pGPIOx, uint8_t pin_number)
-//{
-
-//}
+// GPIO READ/WRITE
+uint8_t GPIO_read_from_input_pin(GPIO_regDef_t *pGPIOx, uint8_t pin_number)
+{
+    uint8_t value;
+    value = (uint8_t) ((pGPIOx->IDR >> pin_number) & 0x00000001);
+    return value;
+}
+uint16_t GPIO_read_from_input_port(GPIO_regDef_t *pGPIOx)
+{
+    uint16_t value;
+    value = (uint16_t) pGPIOx->IDR;
+    return value;
+}
+void GPIO_write_to_output_pin(GPIO_regDef_t *pGPIOx, uint8_t pin_number, uint8_t value)
+{
+    if (value == GPIO_PIN_SET)
+    {
+        //WRITE 1 TO OUTPUT DATA REGISTER AT THE BIT FIELD CORRESPONDING TO THE PIN NUMBER.     
+        pGPIOx->ODR |= (1 << pin_number);
+    }
+    else
+    {
+        //WRITE 0.
+        pGPIOx->ODR &= ~(1 << pin_number);
+    }
+    
+}   
+void GPIO_write_to_output_port(GPIO_regDef_t *pGPIOx, uint16_t value)
+{
+    pGPIOx->ODR = value;
+}
+void GPIO_toggle_output_pin(GPIO_regDef_t *pGPIOx, uint8_t pin_number)
+{
+    pGPIOx->ODR ^= (1<<pin_number);
+}
 
 //// GPIO INTERRUPT HANDLING
 //void GPIO_IRQ_config(uint8_t irq_number, uint8_t irq_priority, uint8_t ENorDI)

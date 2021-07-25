@@ -208,10 +208,12 @@ typedef struct
 
 
 // CLOCK ENABLE MACROS FOR USARTx PERIPHERALS
+#define USART1_PCLK_EN()    (RCC->APB2ENR |= (1<<4))
 #define USART2_PCLK_EN()    (RCC->APB1ENR |= (1<<17))
 #define USART3_PCLK_EN()    (RCC->APB1ENR |= (1<<18))
 #define UART4_PCLK_EN()     (RCC->APB1ENR |= (1<<19))
 #define UART5_PCLK_EN()     (RCC->APB1ENR |= (1<<20))
+#define USART6_PLCK_EN()    (RCC->APB1ENR |= (1<<5))
 
 // CLOCK ENABLE MACROS FOR SYSCFG PERIPHERALS
 #define SYSCFG_PCLK_EN()    (RCC->APB2ENR |= (1<<14))
@@ -253,6 +255,16 @@ typedef struct
 // CLOCK DISABLE MACROS FOR USARTx PERIPHERALS
 
 // CLOCK DISABLE MACROS FOR SYSCFG PERIPHERALS
+
+// MACROS TO RESET GPIO PERIPHERALS
+#define GPIOA_REG_RESET()   do { (RCC->AHB1RSTR |= (1<<0)); (RCC->AHB1RSTR &= ~(1 << 0)); } while(0)
+#define GPIOB_REG_RESET()   do { (RCC->AHB1RSTR |= (1<<1)); (RCC->AHB1RSTR &= ~(1 << 1)); } while(0)
+#define GPIOC_REG_RESET()   do { (RCC->AHB1RSTR |= (1<<2)); (RCC->AHB1RSTR &= ~(1 << 2)); } while(0)
+#define GPIOD_REG_RESET()   do { (RCC->AHB1RSTR |= (1<<3)); (RCC->AHB1RSTR &= ~(1 << 3)); } while(0)
+#define GPIOE_REG_RESET()   do { (RCC->AHB1RSTR |= (1<<4)); (RCC->AHB1RSTR &= ~(1 << 4)); } while(0)
+#define GPIOF_REG_RESET()   do { (RCC->AHB1RSTR |= (1<<5)); (RCC->AHB1RSTR &= ~(1 << 5)); } while(0)
+#define GPIOG_REG_RESET()   do { (RCC->AHB1RSTR |= (1<<6)); (RCC->AHB1RSTR &= ~(1 << 6)); } while(0)
+#define GPIOH_REG_RESET()   do { (RCC->AHB1RSTR |= (1<<7)); (RCC->AHB1RSTR &= ~(1 << 7)); } while(0)
 
 
 

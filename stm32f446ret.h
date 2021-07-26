@@ -102,8 +102,27 @@
 #define DMA2_BASEADDR                   (AHB1_PERIPH_BASE + 0x6400)
 //#define DMA2_BASEADDR                   (AHB1_PERIPH_BASE + 0x00020000)
 
-
-
+/**
+ * APB2 peripherals 
+ * 
+ */
+#define TIM1_BASEADDR                   (APB2_PERIPH_BASE)
+#define TIM8_BASEADDR                   (APB2_PERIPH_BASE + 0x0400)
+#define USART1_BASEADDR                 (APB2_PERIPH_BASE + 0x1000)
+#define USART6_BASEADDR                 (APB2_PERIPH_BASE + 0x1400)
+#define ADC1_BASEADDR                   (APB2_PERIPH_BASE + 0x2000)
+#define ADC2_BASEADDR                   (APB2_PERIPH_BASE + 0x2000)
+#define ADC3_BASEADDR                   (APB2_PERIPH_BASE + 0x2000)
+#define SDMMC_BASEADDR                  (APB2_PERIPH_BASE + 0x2C00)
+#define SPI1_BASEADDR                   (APB2_PERIPH_BASE + 0x3000)
+#define SPI4_BASEADDR                   (APB2_PERIPH_BASE + 0x3400)
+#define SYSCFG_BASEADDR                 (APB2_PERIPH_BASE + 0x3800)
+#define EXTI_BASEADDR                   (APB2_PERIPH_BASE + 0x3C00)
+#define TIM9_BASEADDR                   (APB2_PERIPH_BASE + 0x4000)
+#define TIM10_BASEADDR                  (APB2_PERIPH_BASE + 0x4400)
+#define TIM11_BASEADDR                  (APB2_PERIPH_BASE + 0x4800)
+#define SAI1_BASEADDR                   (APB2_PERIPH_BASE + 0x5800)
+#define SAI2_BASEADDR                   (APB2_PERIPH_BASE + 0x5C00)
 
 
 /**

@@ -347,13 +347,13 @@ typedef struct
     (RCC->AHB1RSTR &= ~(1 << 7)); \
   } while (0)
 
-#define GPIO_BASEADDR_TO_CODE(x) ((x == GPIOA) ? 0 : (x == GPIOB) ? 1 \
-                                                 : (x == GPIOC)   ? 2 \
-                                                 : (x == GPIOD)   ? 3 \
-                                                 : (x == GPIOE)   ? 4 \
-                                                 : (x == GPIOF)   ? 5 \
-                                                 : (x == GPIOG)   ? 6 \
-                                                 : (x == GPIOH)   ? 7 \
-                                                                  : 0)
+#define GPIO_BASEADDR_TO_CODE(x)  (x == GPIOA) ? 0 : \
+                                  (x == GPIOB) ? 1 : \
+                                  (x == GPIOC) ? 2 : \
+                                  (x == GPIOD) ? 3 : \
+                                  (x == GPIOE) ? 4 : \
+                                  (x == GPIOF) ? 5 : \
+                                  (x == GPIOG) ? 6 : \
+                                  (x == GPIOH) ? 7 : 0 )
 
 #endif

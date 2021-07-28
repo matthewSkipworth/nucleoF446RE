@@ -93,7 +93,7 @@ void GPIO_write_to_output_port(GPIO_regDef_t *pGPIOx, uint16_t value);
 void GPIO_toggle_output_pin(GPIO_regDef_t *pGPIOx, uint8_t pin_number);
 
 // GPIO INTERRUPT HANDLING
-// void GPIO_IRQ_config(uint8_t irq_number, uint8_t irq_priority, uint8_t ENorDI);
+ void GPIO_IRQ_config(uint8_t irq_number/*, uint8_t irq_priority*/, uint8_t ENorDI);
 // void GPIO_IRQ_handling(uint8_t pin_number);
 
 // ENABLE/DISABLE GPIO PORT CLOCK

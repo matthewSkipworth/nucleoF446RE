@@ -3,12 +3,45 @@
 
 #include <stdint.h>
 
+#define NVIC_ISER0 ((volatile uint32_t*) 0xE000E100)
+#define NVIC_ISER1 ((volatile uint32_t*) 0xE000E104)
+#define NVIC_ISER2 ((volatile uint32_t*) 0xE000E108)
+#define NVIC_ISER3 ((volatile uint32_t*) 0xE000E10C)
+#define NVIC_ISER4 ((volatile uint32_t*) 0xE000E110)
+#define NVIC_ISER5 ((volatile uint32_t*) 0xE000E114)
+#define NVIC_ISER6 ((volatile uint32_t*) 0xE000E118)
+#define NVIC_ISER7 ((volatile uint32_t*) 0xE000E11C)
+    
+#define NVIC_ICER0 ((volatile uint32_t*) 0xE000E180)
+#define NVIC_ICER1 ((volatile uint32_t*) 0xE000E184)
+#define NVIC_ICER2 ((volatile uint32_t*) 0xE000E188)
+#define NVIC_ICER3 ((volatile uint32_t*) 0xE000E18C)
+#define NVIC_ICER4 ((volatile uint32_t*) 0xE000E190)
+#define NVIC_ICER5 ((volatile uint32_t*) 0xE000E194)
+#define NVIC_ICER6 ((volatile uint32_t*) 0xE000E198)
+#define NVIC_ICER7 ((volatile uint32_t*) 0xE000E19C)
+    
+#define NVIC_ISPR0 ((volatile uint32_t*) 0xE000E200)
+#define NVIC_ISPR1 ((volatile uint32_t*) 0xE000E204)
+#define NVIC_ISPR2 ((volatile uint32_t*) 0xE000E208)
+#define NVIC_ISPR3 ((volatile uint32_t*) 0xE000E20C)
+#define NVIC_ISPR4 ((volatile uint32_t*) 0xE000E210)
+#define NVIC_ISPR5 ((volatile uint32_t*) 0xE000E214)
+#define NVIC_ISPR6 ((volatile uint32_t*) 0xE000E218)
+#define NVIC_ISPR7 ((volatile uint32_t*) 0xE000E21C)
+
+#define NVIC_PR_BASE_ADDR ((volatile uint32_t*) 0xE000E400)
+
+#define NUMBER_OF_PRIORITY_BITS_IMPLEMENTED
+
+
 #define ENABLE 1
 #define DISABLE 0
 #define SET ENABLE
 #define RESET DISABLE
 #define GPIO_PIN_SET SET
 #define GPIO_PIN_RESET RESET
+#define BTN_PRESSED 0
 
 /**
  * Base addresses of flash and sram memories.
@@ -347,13 +380,13 @@ typedef struct
     (RCC->AHB1RSTR &= ~(1 << 7)); \
   } while (0)
 
-#define GPIO_BASEADDR_TO_CODE(x) ((x == GPIOA) ? 0 : (x == GPIOB) ? 1 \
-                                                 : (x == GPIOC)   ? 2 \
-                                                 : (x == GPIOD)   ? 3 \
-                                                 : (x == GPIOE)   ? 4 \
-                                                 : (x == GPIOF)   ? 5 \
-                                                 : (x == GPIOG)   ? 6 \
-                                                 : (x == GPIOH)   ? 7 \
-                                                                  : 0)
+#define GPIO_BASEADDR_TO_CODE(x) ((x == GPIOA) ? 0 : \
+                                  (x == GPIOB) ? 1 : \
+                                  (x == GPIOC) ? 2 : \
+                                  (x == GPIOD) ? 3 : \
+                                  (x == GPIOE) ? 4 : \
+                                  (x == GPIOF) ? 5 : \
+                                  (x == GPIOG) ? 6 : \
+                                  (x == GPIOH) ? 7 : 0 )
 
 #endif

@@ -3,128 +3,128 @@
 
 #include <stdint.h>
 
-#define NVIC_ISER0 ((volatile uint32_t*) 0xE000E100)
-#define NVIC_ISER1 ((volatile uint32_t*) 0xE000E104)
-#define NVIC_ISER2 ((volatile uint32_t*) 0xE000E108)
-#define NVIC_ISER3 ((volatile uint32_t*) 0xE000E10C)
-#define NVIC_ISER4 ((volatile uint32_t*) 0xE000E110)
-#define NVIC_ISER5 ((volatile uint32_t*) 0xE000E114)
-#define NVIC_ISER6 ((volatile uint32_t*) 0xE000E118)
-#define NVIC_ISER7 ((volatile uint32_t*) 0xE000E11C)
+#define NVIC_ISER0                      ((volatile uint32_t*) 0xE000E100)
+#define NVIC_ISER1                      ((volatile uint32_t*) 0xE000E104)
+#define NVIC_ISER2                      ((volatile uint32_t*) 0xE000E108)
+#define NVIC_ISER3                      ((volatile uint32_t*) 0xE000E10C)
+#define NVIC_ISER4                      ((volatile uint32_t*) 0xE000E110)
+#define NVIC_ISER5                      ((volatile uint32_t*) 0xE000E114)
+#define NVIC_ISER6                      ((volatile uint32_t*) 0xE000E118)
+#define NVIC_ISER7                      ((volatile uint32_t*) 0xE000E11C)
     
-#define NVIC_ICER0 ((volatile uint32_t*) 0xE000E180)
-#define NVIC_ICER1 ((volatile uint32_t*) 0xE000E184)
-#define NVIC_ICER2 ((volatile uint32_t*) 0xE000E188)
-#define NVIC_ICER3 ((volatile uint32_t*) 0xE000E18C)
-#define NVIC_ICER4 ((volatile uint32_t*) 0xE000E190)
-#define NVIC_ICER5 ((volatile uint32_t*) 0xE000E194)
-#define NVIC_ICER6 ((volatile uint32_t*) 0xE000E198)
-#define NVIC_ICER7 ((volatile uint32_t*) 0xE000E19C)
+#define NVIC_ICER0                      ((volatile uint32_t*) 0xE000E180)
+#define NVIC_ICER1                      ((volatile uint32_t*) 0xE000E184)
+#define NVIC_ICER2                      ((volatile uint32_t*) 0xE000E188)
+#define NVIC_ICER3                      ((volatile uint32_t*) 0xE000E18C)
+#define NVIC_ICER4                      ((volatile uint32_t*) 0xE000E190)
+#define NVIC_ICER5                      ((volatile uint32_t*) 0xE000E194)
+#define NVIC_ICER6                      ((volatile uint32_t*) 0xE000E198)
+#define NVIC_ICER7                      ((volatile uint32_t*) 0xE000E19C)
     
-#define NVIC_ISPR0 ((volatile uint32_t*) 0xE000E200)
-#define NVIC_ISPR1 ((volatile uint32_t*) 0xE000E204)
-#define NVIC_ISPR2 ((volatile uint32_t*) 0xE000E208)
-#define NVIC_ISPR3 ((volatile uint32_t*) 0xE000E20C)
-#define NVIC_ISPR4 ((volatile uint32_t*) 0xE000E210)
-#define NVIC_ISPR5 ((volatile uint32_t*) 0xE000E214)
-#define NVIC_ISPR6 ((volatile uint32_t*) 0xE000E218)
-#define NVIC_ISPR7 ((volatile uint32_t*) 0xE000E21C)
+#define NVIC_ISPR0                      ((volatile uint32_t*) 0xE000E200)
+#define NVIC_ISPR1                      ((volatile uint32_t*) 0xE000E204)
+#define NVIC_ISPR2                      ((volatile uint32_t*) 0xE000E208)
+#define NVIC_ISPR3                      ((volatile uint32_t*) 0xE000E20C)
+#define NVIC_ISPR4                      ((volatile uint32_t*) 0xE000E210)
+#define NVIC_ISPR5                      ((volatile uint32_t*) 0xE000E214)
+#define NVIC_ISPR6                      ((volatile uint32_t*) 0xE000E218)
+#define NVIC_ISPR7                      ((volatile uint32_t*) 0xE000E21C)
 
 #define NVIC_PR_BASE_ADDR ((volatile uint32_t*) 0xE000E400)
 
-#define NUMBER_OF_PRIORITY_BITS_IMPLEMENTED
+#define NUMBER_OF_PRIORITY_BITS_IMPLEMENTED 4
 
 
-#define ENABLE 1
-#define DISABLE 0
-#define SET ENABLE
-#define RESET DISABLE
-#define GPIO_PIN_SET SET
-#define GPIO_PIN_RESET RESET
-#define BTN_PRESSED 0
+#define ENABLE                          1
+#define DISABLE                         0
+#define SET                             ENABLE
+#define RESET                           DISABLE
+#define GPIO_PIN_SET                    SET
+#define GPIO_PIN_RESET                  RESET
+#define BTN_PRESSED                     0
 
 /**
  * Base addresses of flash and sram memories.
  * 
  */
 
-#define FLASH_BASEADDR 0x08000000U
-#define SRAM1_BASEADDR 0X20000000U
-#define SRAM2_BASEADDR 0X2001C000U
-#define ROM_BASEADDR 0x1FFF0000U
+#define FLASH_BASEADDR                  0x08000000U
+#define SRAM1_BASEADDR                  0X20000000U
+#define SRAM2_BASEADDR                  0X2001C000U
+#define ROM_BASEADDR                    0x1FFF0000U
 
 /**
  * Peripheral buses
  * 
  */
 
-#define AHB1_PERIPH_BASE 0x40020000U
-#define AHB2_PERIPH_BASE 0x40023000U
-#define AHB3_PERIPH_BASE 0xA0001000U
+#define AHB1_PERIPH_BASE                0x40020000U
+#define AHB2_PERIPH_BASE                0x40023000U
+#define AHB3_PERIPH_BASE                0xA0001000U
 
-#define APB1_PERIPH_BASE 0x40000000U
-#define APB2_PERIPH_BASE 0x40010000U
+#define APB1_PERIPH_BASE                0x40000000U
+#define APB2_PERIPH_BASE                0x40010000U
 
-#define PERIPH_BASE APB1_PERIPH_BASE
+#define PERIPH_BASE                     APB1_PERIPH_BASE
 
 /**
  * GPIO base addresses (AHB1 peripherals)
  * 
  */
 
-#define GPIOA_BASEADDR (AHB1_PERIPH_BASE + 0x0000)
-#define GPIOB_BASEADDR (AHB1_PERIPH_BASE + 0x0400)
-#define GPIOC_BASEADDR (AHB1_PERIPH_BASE + 0x0800)
-#define GPIOD_BASEADDR (AHB1_PERIPH_BASE + 0x0C00)
-#define GPIOE_BASEADDR (AHB1_PERIPH_BASE + 0x1000)
-#define GPIOF_BASEADDR (AHB1_PERIPH_BASE + 0x1400)
-#define GPIOG_BASEADDR (AHB1_PERIPH_BASE + 0x1800)
-#define GPIOH_BASEADDR (AHB1_PERIPH_BASE + 0x1C00)
+#define GPIOA_BASEADDR                  (AHB1_PERIPH_BASE + 0x0000)
+#define GPIOB_BASEADDR                  (AHB1_PERIPH_BASE + 0x0400)
+#define GPIOC_BASEADDR                  (AHB1_PERIPH_BASE + 0x0800)
+#define GPIOD_BASEADDR                  (AHB1_PERIPH_BASE + 0x0C00)
+#define GPIOE_BASEADDR                  (AHB1_PERIPH_BASE + 0x1000)
+#define GPIOF_BASEADDR                  (AHB1_PERIPH_BASE + 0x1400)
+#define GPIOG_BASEADDR                  (AHB1_PERIPH_BASE + 0x1800)
+#define GPIOH_BASEADDR                  (AHB1_PERIPH_BASE + 0x1C00)
 
 /**
  * APB1 peripherals
  * 
  */
 
-#define TIM2_BASEADDR (APB1_PERIPH_BASE + 0x0000)
-#define TIM3_BASEADDR (APB1_PERIPH_BASE + 0x0400)
-#define TIM4_BASEADDR (APB1_PERIPH_BASE + 0x0800)
-#define TIM5_BASEADDR (APB1_PERIPH_BASE + 0x0C00)
-#define TIM6_BASEADDR (APB1_PERIPH_BASE + 0x1000)
-#define TIM7_BASEADDR (APB1_PERIPH_BASE + 0x1400)
-#define TIM12_BASEADDR (APB1_PERIPH_BASE + 0x1800)
-#define TIM13_BASEADDR (APB1_PERIPH_BASE + 0x1C00)
-#define TIM14_BASEADDR (APB1_PERIPH_BASE + 0x2000)
-#define RTC_BKP_BASEADDR (APB1_PERIPH_BASE + 0x2800)
-#define WWDG_BASEADDR (APB1_PERIPH_BASE + 0x2C00)
-#define IWDG_BASEADDR (APB1_PERIPH_BASE + 0x3000)
-#define SPI2_BASEADDR (APB1_PERIPH_BASE + 0x3800)
-#define SPI3_BASEADDR (APB1_PERIPH_BASE + 0x3C00)
-#define SPDIF_RX_BASEADDR (APB1_PERIPH_BASE + 0x4000)
-#define USART2_BASEADDR (APB1_PERIPH_BASE + 0x4400)
-#define USART3_BASEADDR (APB1_PERIPH_BASE + 0x4800)
-#define UART4_BASEADDR (APB1_PERIPH_BASE + 0x4C00)
-#define UART5_BASEADDR (APB1_PERIPH_BASE + 0x5000)
-#define I2C1_BASEADDR (APB1_PERIPH_BASE + 0x5400)
-#define I2C2_BASEADDR (APB1_PERIPH_BASE + 0x5800)
-#define I2C3_BASEADDR (APB1_PERIPH_BASE + 0x5C00)
-#define CAN1_BASEADDR (APB1_PERIPH_BASE + 0x6400)
-#define CAN2_BASEADDR (APB1_PERIPH_BASE + 0x6800)
-#define HDMI_CEC_BASEADDR (APB1_PERIPH_BASE + 0x6C00)
-#define PWR_BASEADDR (APB1_PERIPH_BASE + 0x7000)
-#define DAC_BASEADDR (APB1_PERIPH_BASE + 0x7400)
+#define TIM2_BASEADDR                   (APB1_PERIPH_BASE + 0x0000)
+#define TIM3_BASEADDR                   (APB1_PERIPH_BASE + 0x0400)
+#define TIM4_BASEADDR                   (APB1_PERIPH_BASE + 0x0800)
+#define TIM5_BASEADDR                   (APB1_PERIPH_BASE + 0x0C00)
+#define TIM6_BASEADDR                   (APB1_PERIPH_BASE + 0x1000)
+#define TIM7_BASEADDR                   (APB1_PERIPH_BASE + 0x1400)
+#define TIM12_BASEADDR                  (APB1_PERIPH_BASE + 0x1800)
+#define TIM13_BASEADDR                  (APB1_PERIPH_BASE + 0x1C00)
+#define TIM14_BASEADDR                  (APB1_PERIPH_BASE + 0x2000)
+#define RTC_BKP_BASEADDR                (APB1_PERIPH_BASE + 0x2800)
+#define WWDG_BASEADDR                   (APB1_PERIPH_BASE + 0x2C00)
+#define IWDG_BASEADDR                   (APB1_PERIPH_BASE + 0x3000)
+#define SPI2_BASEADDR                   (APB1_PERIPH_BASE + 0x3800)
+#define SPI3_BASEADDR                   (APB1_PERIPH_BASE + 0x3C00)
+#define SPDIF_RX_BASEADDR               (APB1_PERIPH_BASE + 0x4000)
+#define USART2_BASEADDR                 (APB1_PERIPH_BASE + 0x4400)
+#define USART3_BASEADDR                 (APB1_PERIPH_BASE + 0x4800)
+#define UART4_BASEADDR                  (APB1_PERIPH_BASE + 0x4C00)
+#define UART5_BASEADDR                  (APB1_PERIPH_BASE + 0x5000)
+#define I2C1_BASEADDR                   (APB1_PERIPH_BASE + 0x5400)
+#define I2C2_BASEADDR                   (APB1_PERIPH_BASE + 0x5800)
+#define I2C3_BASEADDR                   (APB1_PERIPH_BASE + 0x5C00)
+#define CAN1_BASEADDR                   (APB1_PERIPH_BASE + 0x6400)
+#define CAN2_BASEADDR                   (APB1_PERIPH_BASE + 0x6800)
+#define HDMI_CEC_BASEADDR               (APB1_PERIPH_BASE + 0x6C00)
+#define PWR_BASEADDR                    (APB1_PERIPH_BASE + 0x7000)
+#define DAC_BASEADDR                    (APB1_PERIPH_BASE + 0x7400)
 
 /**
  * AHB1 peripherals
  * 
  */
 
-#define CRC_BASEADDR (AHB1_PERIPH_BASE + 0x3000)
-#define RCC_BASEADDR (AHB1_PERIPH_BASE + 0x3800)
-#define FLASH_INTERFACE_REG_BASEADDR (AHB1_PERIPH_BASE + 0x3C00)
-#define BKPSRAM_BASEADDR (AHB1_PERIPH_BASE + 0x4000)
-#define DMA1_BASEADDR (AHB1_PERIPH_BASE + 0x6000)
-#define DMA2_BASEADDR (AHB1_PERIPH_BASE + 0x6400)
+#define CRC_BASEADDR                    (AHB1_PERIPH_BASE + 0x3000)
+#define RCC_BASEADDR                    (AHB1_PERIPH_BASE + 0x3800)
+#define FLASH_INTERFACE_REG_BASEADDR    (AHB1_PERIPH_BASE + 0x3C00)
+#define BKPSRAM_BASEADDR                (AHB1_PERIPH_BASE + 0x4000)
+#define DMA1_BASEADDR                   (AHB1_PERIPH_BASE + 0x6000)
+#define DMA2_BASEADDR                   (AHB1_PERIPH_BASE + 0x6400)
 //#define DMA2_BASEADDR                   (AHB1_PERIPH_BASE + 0x00020000)
 
 /**

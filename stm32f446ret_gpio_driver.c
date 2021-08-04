@@ -228,7 +228,7 @@ void GPIO_toggle_output_pin(GPIO_regDef_t *pGPIOx, uint8_t pin_number)
 }
 
 //// GPIO INTERRUPT HANDLING
-void GPIO_IRQ_config(uint8_t IRQ_Number/*, uint8_t irq_priority*/, uint8_t ENorDI)
+void GPIO_IRQ_config(uint8_t IRQ_Number /*, uint8_t irq_priority*/, uint8_t ENorDI)
 {
     if (ENorDI == ENABLE)
     {
@@ -262,19 +262,21 @@ void GPIO_IRQ_config(uint8_t IRQ_Number/*, uint8_t irq_priority*/, uint8_t ENorD
             *NVIC_ICER2 |= (1 << IRQ_Number % 64);
         }
     }
-    
 }
 
 void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint8_t IRQPriority)
 {
     uint8_t iprx = IRQNumber / 4;
     uint8_t iprx_section = IRQNumber % 4;
-    
+
     uint8_t shift_amount = (8 * iprx_section) + (8 - NUMBER_OF_PRIORITY_BITS_IMPLEMENTED);
     *(NVIC_PR_BASE_ADDR + (iprx * 4)) |= (IRQPriority << shift_amount);
-    
 }
-//void GPIO_IRQ_handling(uint8_t pin_number)
-//{
 
-//}
+void GPIO_IRQ_handling(uint8_t pin_number)
+{
+    if (EXTI->PR & (1 << pin_number))
+    {
+        EXTI->PR |= (1 << pin_number);
+    }
+}

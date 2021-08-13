@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\006spi_tx_test.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\006spi_tx_test.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Aug 03 23:00:51 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Aug 11 16:32:58 2021
 <BR><P>
-<H3>Maximum Stack Usage =         36 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         40 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; SPI2_GPIO_Inits &rArr; GPIO_init
+__rt_entry_main &rArr; main &rArr; SPI2_Inits &rArr; SPI_Init
 <P>
 <H3>
 Functions with no stack information
@@ -242,8 +242,8 @@ Global Symbols
 <P><STRONG><a name="[a1]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[70]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; SPI2_GPIO_Inits &rArr; GPIO_init
+<BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; SPI2_Inits &rArr; SPI_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -596,7 +596,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[80]"></a>strlen</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, strlen.o(.text))
+<P><STRONG><a name="[81]"></a>strlen</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, strlen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = strlen
 </UL>
 <BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -657,7 +657,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_init
 </UL>
 
-<P><STRONG><a name="[7b]"></a>SPI2_GPIO_Inits</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, main.o(i.SPI2_GPIO_Inits))
+<P><STRONG><a name="[7b]"></a>SPI2_GPIO_Inits</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, main.o(i.SPI2_GPIO_Inits))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = SPI2_GPIO_Inits &rArr; GPIO_init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_init
@@ -665,16 +665,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7c]"></a>SPI2_Inits</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, main.o(i.SPI2_Inits))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SPI2_Inits &rArr; SPI_Init
+<P><STRONG><a name="[7c]"></a>SPI2_Inits</STRONG> (Thumb, 58 bytes, Stack size 24 bytes, main.o(i.SPI2_Inits))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = SPI2_Inits &rArr; SPI_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7d]"></a>SPI_Init</STRONG> (Thumb, 86 bytes, Stack size 12 bytes, stm32f446re_spi_driver.o(i.SPI_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SPI_Init
+<P><STRONG><a name="[7d]"></a>SPI_Init</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, stm32f446re_spi_driver.o(i.SPI_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = SPI_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_PeriClockControl
 </UL>
@@ -689,18 +689,20 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[81]"></a>SPI_SendData</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, stm32f446re_spi_driver.o(i.SPI_SendData))
-<BR><BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[80]"></a>SPI_SendData</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, stm32f446re_spi_driver.o(i.SPI_SendData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPI_SendData
+</UL>
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[62]"></a>SystemInit</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, system_stm32f4xx.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f446xx.o(.text)
 </UL>
-<P><STRONG><a name="[71]"></a>main</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = main &rArr; SPI2_GPIO_Inits &rArr; GPIO_init
+<P><STRONG><a name="[71]"></a>main</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = main &rArr; SPI2_Inits &rArr; SPI_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_SendData
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_SendData
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_PeripheralControl
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_Inits
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_GPIO_Inits

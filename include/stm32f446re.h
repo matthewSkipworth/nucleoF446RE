@@ -195,7 +195,8 @@ typedef struct
 } GPIO_regDef_t;
 typedef struct
 {
-  volatile uint32_t CR[2];
+  volatile uint32_t CR1;
+  volatile uint32_t CR2;
   volatile uint32_t SR;
   volatile uint32_t DR;
   volatile uint32_t CRCPR;

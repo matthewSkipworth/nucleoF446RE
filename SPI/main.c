@@ -22,8 +22,8 @@ void SPI2_GPIO_Inits(void)
     SPI_Pins.GPIO_pinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
     
 //    //NSS
-//    SPI_Pins.GPIO_pinConfig.GPIO_PinNumber = GPIO_PIN_NO_12;
-//    GPIO_init(&SPI_Pins);
+    SPI_Pins.GPIO_pinConfig.GPIO_PinNumber = GPIO_PIN_NO_12;
+    GPIO_init(&SPI_Pins);
 //    
     //SCLK
     SPI_Pins.GPIO_pinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
@@ -41,23 +41,30 @@ void SPI2_GPIO_Inits(void)
 void SPI2_Inits(void)
 {
     SPI_Handle_t SPI2_handle;
+    SPI2_handle.pSPIx = SPI2;
     SPI2_handle.SPI_Config.SPI_BusConfig = SPI_BUS_CONFIG_FD;
     SPI2_handle.SPI_Config.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;
     SPI2_handle.SPI_Config.SPI_SclkSpeed = SPI_SCLK_SPEED_DIV_2; //8 MHz
     SPI2_handle.SPI_Config.SPI_DFF = SPI_DFF_8_BITS;
     SPI2_handle.SPI_Config.SPI_CPOL = SPI_CPOL_LOW;
     SPI2_handle.SPI_Config.SPI_CPHA = SPI_CPHA_LOW;
+    SPI2_handle.SPI_Config.SPI_SSI = SPI_SSI_EN;
+    SPI2_handle.SPI_Config.SPI_SSOE = SPI_SSOE_EN;
     SPI2_handle.SPI_Config.SPI_SSM = SPI_SSM_SW_EN;
     
+//    SPI_PeriClockControl(SPI2_handle.pSPIx, ENABLE);
+//    SPI2_PCLK_EN();
     SPI_Init(&SPI2_handle);
     
+    
+//    SPI_PeripheralControl(SPI2_handle.pSPIx, ENABLE);
 }
 
 int main(void)
 {
     
     
-    const char* hello = "Hello, World!";
+    const char* hello = "Hello World!";
 
     SPI2_GPIO_Inits();
     SPI2_Inits();
@@ -66,7 +73,13 @@ int main(void)
     
     SPI_PeripheralControl(SPI2, ENABLE);
     
-    SPI_SendData(SPI2, (unsigned char *)hello, strlen(hello));
+    SPI_SendData(SPI2, (uint8_t *)0xFF, 1);
+    SPI_PeripheralControl(SPI2, DISABLE);
+    
+    SPI_PeripheralControl(SPI2, ENABLE);
+    SPI_SendData(SPI2, (uint8_t *)hello, strlen(hello));
+    SPI_PeripheralControl(SPI2, DISABLE);
+        
     
     while(1);
 //    return 0;

@@ -193,6 +193,7 @@ typedef struct
   volatile uint32_t AFR[2];
 
 } GPIO_regDef_t;
+
 typedef struct
 {
   volatile uint32_t CR[2];
@@ -204,6 +205,21 @@ typedef struct
   volatile uint32_t I2SCFGR;
   volatile uint32_t I2SPR;
 } SPI_regDef_t;
+
+typedef struct
+{
+  volatile uint32_t CR1;
+  volatile uint32_t CR2;
+  volatile uint32_t OAR1;
+  volatile uint32_t OAR2;
+  volatile uint32_t DR;
+  volatile uint32_t SR1;
+  volatile uint32_t SR2;
+  volatile uint32_t CCR;
+  volatile uint32_t TRISE;
+  volatile uint32_t FLTR;  
+} I2C_regDef_t;
+
 
 /**
  * peripheral register structure for RCC.

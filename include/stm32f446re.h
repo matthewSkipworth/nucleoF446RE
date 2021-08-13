@@ -300,6 +300,11 @@ typedef struct
 #define SPI3 ((SPI_regDef_t *)SPI3_BASEADDR) //(APB1_PERIPH_BASE + 0x3C00)
 #define SPI4 ((SPI_regDef_t *)SPI4_BASEADDR) //(APB2_PERIPH_BASE + 0x3400)
 
+#define I2C1 ((I2C_regDef_t *)I2C1_BASEADDR)
+#define I2C2 ((I2C_regDef_t *)I2C2_BASEADDR)
+#define I2C3 ((I2C_regDef_t *)I2C3_BASEADDR)
+
+
 #define RCC ((RCC_regDef_t *)RCC_BASEADDR)
 
 #define EXTI ((EXTI_RegDef_t *)EXTI_BASEADDR)

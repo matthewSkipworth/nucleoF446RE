@@ -61,6 +61,20 @@
 #define SPI_SSM_SW_EN                       1
 
 /**
+ * @SPI_SSI
+ */
+
+#define SPI_SSI_DI                       0
+#define SPI_SSI_EN                       1
+
+/**
+ * @SPI_SSOE
+ */
+
+#define SPI_SSOE_DI                       0
+#define SPI_SSOE_EN                       1
+
+/**
  * @SPI_DEVICEMODE
  */
 
@@ -124,6 +138,8 @@ typedef struct
     uint8_t SPI_CPOL;
     uint8_t SPI_CPHA;
     uint8_t SPI_SSM;
+    uint8_t SPI_SSI;
+    uint8_t SPI_SSOE;
 } SPI_Config_t;
 
 

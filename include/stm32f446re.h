@@ -196,7 +196,8 @@ typedef struct
 
 typedef struct
 {
-  volatile uint32_t CR[2];
+  volatile uint32_t CR1;
+  volatile uint32_t CR2;
   volatile uint32_t SR;
   volatile uint32_t DR;
   volatile uint32_t CRCPR;
@@ -314,6 +315,11 @@ typedef struct
 #define SPI2 ((SPI_regDef_t *)SPI2_BASEADDR) //(APB1_PERIPH_BASE + 0x3800)
 #define SPI3 ((SPI_regDef_t *)SPI3_BASEADDR) //(APB1_PERIPH_BASE + 0x3C00)
 #define SPI4 ((SPI_regDef_t *)SPI4_BASEADDR) //(APB2_PERIPH_BASE + 0x3400)
+
+#define I2C1 ((I2C_regDef_t *)I2C1_BASEADDR)
+#define I2C2 ((I2C_regDef_t *)I2C2_BASEADDR)
+#define I2C3 ((I2C_regDef_t *)I2C3_BASEADDR)
+
 
 #define RCC ((RCC_regDef_t *)RCC_BASEADDR)
 

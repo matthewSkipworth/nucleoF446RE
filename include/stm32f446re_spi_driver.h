@@ -64,15 +64,15 @@
  * @SPI_SSI
  */
 
-#define SPI_SSI_DI                       0
-#define SPI_SSI_EN                       1
+#define SPI_SSI_DI                          0
+#define SPI_SSI_EN                          1
 
 /**
  * @SPI_SSOE
  */
 
-#define SPI_SSOE_DI                       0
-#define SPI_SSOE_EN                       1
+#define SPI_SSOE_DI                         0
+#define SPI_SSOE_EN                         1
 
 /**
  * @SPI_DEVICEMODE

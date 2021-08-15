@@ -2,15 +2,41 @@
 #define STM32F44RE_I2C_DRIVER_H
 
 #include <stdint.h>
+#include <stm32f446re.h>
 
 typedef struct 
 {
-    uint8_t SCL_Speed;
+    uint32_t SCL_Speed;
     uint8_t DeviceAddress;
     uint8_t ACK_Control;
     uint8_t FM_DutyCycle;
 } I2C_Config_t;
 
+typedef struct 
+{
+    I2C_regDef_t *pI2Cx;
+    I2C_Config_t I2C_Config;
+} I2C_Handle_t;
+
+
+/**
+ * I2C_SCL_SPEED 
+ */
+#define I2C_SCL_SPEED_SM        100000
+#define I2C_SCL_SPEED_FM4K      400000
+#define I2C_SCL_SPEED_FM2K      200000
+
+/**
+ * I2C_ACK_CONTROL
+ */
+#define I2C_ACK_ENABLE          1
+#define I2C_ACK_DISABLE         0
+
+/**
+ * I2C_FM_DUTYCYCLE
+ */
+#define I2C_FM_DUTY_2           0
+#define I2C_FM_DUTY_16_9        1
 
 
 // BIT POSITION MACROS FOR CR1, CR2, DR, SR1, SR2, CCR, TRISE
@@ -90,8 +116,7 @@ typedef struct
 
 #define I2C_TRISE_BITS 0
 
-
-
+void I2C_PeriClockControl(I2C_regDef_t *pI2Cx, uint8_t ENorDI);
 
 void I2C_Init();
 void I2C_Master_Transmit();

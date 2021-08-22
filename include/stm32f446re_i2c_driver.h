@@ -116,9 +116,11 @@ typedef struct
 
 #define I2C_TRISE_BITS 0
 
-void I2C_PeriClockControl(I2C_regDef_t *pI2Cx, uint8_t ENorDI);
+void I2C_PeriClockControl(I2C_regDef_t* pI2Cx, uint8_t ENorDI);
 
-void I2C_Init();
+void I2C_PeripheralControl(I2C_regDef_t* pI2Cx, uint8_t ENorDI);
+
+void I2C_Init(I2C_Handle_t* pHandle);
 void I2C_Master_Transmit();
 void I2C_Master_Recieve();
 void I2C_Slave_Transmit();

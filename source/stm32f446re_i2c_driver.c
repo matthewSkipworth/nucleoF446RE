@@ -53,6 +53,19 @@ void I2C_Init(I2C_Handle_t* pHandle)
     //3 configure the device address (applicable when the device is slave)
     //4 enable the Acking.
     //5 configure the rise time fo the i2C pins
+    uint32_t tempreg = 0;
+
+    tempreg |= pHandle->I2C_Config.ACK_Control << 10;
+    pHandle->pI2Cx->CR1 = tempreg;
+
+    tempreg = 0;
+    tempreg |= RCC_getPCLK1Value() / 1000000U;
+
+    pHandle->pI2Cx->CR2 = (tempreg & 0x3F);
+
+    tempreg |= pHandle->I2C_Config.DeviceAddress << 1;
+    tempreg |= (1 << 14);
+    pHandle->pI2Cx->OAR1 = tempreg;
 
 
 }
@@ -80,12 +93,12 @@ const uint8_t APB_Prescalar[] = {2, 4, 8, 16};
 uint32_t RCC_getPCLK1Value(void)
 {
     uint32_t pclk1, SystemClk;
-    uint8_t clksrc, temp, ahpb;
+    uint8_t clksrc, temp, ahbp, apb1p;
 
     clksrc = (RCC->CFGR >> 2) & 0x3);
     if (clksrc == 0)
     {
-        SystemClk = 16000000
+        SystemClk = 16000000;
     }
     else if (clksrc == 1)
     {
@@ -100,12 +113,25 @@ uint32_t RCC_getPCLK1Value(void)
 
     if (temp < 8)
     {
-        ahpb = 1;
+        ahbp = 1;
     }
     else 
     {
-        ahpb = AHB_Prescaler[temp-1];
+        ahbp = AHB_Prescaler[temp - 8];
     }
+
+    temp = ((RCC ->CFGR >> 10) & 0x07);
+    if (temp < 4)
+    {
+        apb1p = 1;
+    }
+    else 
+    {
+        apb1p = APB_Prescalar[temp - 4];
+    }
+    pclk1 = (SystemClk / ahbp) / apb1p;
+
+
     return pclk1;
 }
 

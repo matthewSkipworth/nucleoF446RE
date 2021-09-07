@@ -55,17 +55,44 @@ void I2C_Init(I2C_Handle_t* pHandle)
     //5 configure the rise time fo the i2C pins
     uint32_t tempreg = 0;
 
-    tempreg |= pHandle->I2C_Config.ACK_Control << 10;
-    pHandle->pI2Cx->CR1 = tempreg;
+    tempreg |= (pHandle->I2C_Config.ACK_Control << I2C_CR1_ACK_BIT);
+    pHandle->pI2Cx->CR1 |= tempreg;
 
     tempreg = 0;
     tempreg |= RCC_getPCLK1Value() / 1000000U;
 
-    pHandle->pI2Cx->CR2 = (tempreg & 0x3F);
+    pHandle->pI2Cx->CR2 = (tempreg & 0x3F); //FREQ bit field.
 
     tempreg |= pHandle->I2C_Config.DeviceAddress << 1;
-    tempreg |= (1 << 14);
+    tempreg |= (1 << 14); // Bit 14 should always be kept at 1 by software (per reference manual). Reason not stated.
     pHandle->pI2Cx->OAR1 = tempreg;
+
+    tempreg = 0;
+    uint16_t ccr_value = 0;
+    if (pHandle->I2C_Config.SCL_Speed <= I2C_SCL_SPEED_SM)
+    {
+        //mode is standard mode
+        // pHandle->pI2Cx->CCR = RCC_getPCLK1Value() / (2 * pHandle->I2C_Config.SCL_Speed);
+        ccr_value = RCC_getPCLK1Value() / (2 * pHandle->I2C_Config.SCL_Speed);
+        tempreg |= (ccr_value & 0xFFF);
+    }
+    else
+    {
+        //mode is fast mode
+        tempreg |= (1 << I2C_CCR_FS_BIT);
+        tempreg |= (pHandle->I2C_Config.FM_DutyCycle << I2C_CCR_DUTY_BIT);
+
+        if (pHandle->I2C_Config.FM_DutyCycle == I2C_FM_DUTY_2)
+        {
+            ccr_value = (RCC_getPCLK1Value() / (3 * pHandle->I2C_Config.SCL_Speed));
+        }
+        else
+        {
+            ccr_value = (RCC_getPCLK1Value() / (25 * pHandle->I2C_Config.SCL_Speed));
+        }
+        tempreg |= (ccr_value & 0xFFF);
+    }
+
 
 
 }
@@ -95,7 +122,7 @@ uint32_t RCC_getPCLK1Value(void)
     uint32_t pclk1, SystemClk;
     uint8_t clksrc, temp, ahbp, apb1p;
 
-    clksrc = (RCC->CFGR >> 2) & 0x3);
+    clksrc = ((RCC->CFGR >> 2) & 0x3);
     if (clksrc == 0)
     {
         SystemClk = 16000000;

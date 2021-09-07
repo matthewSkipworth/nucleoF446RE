@@ -338,9 +338,9 @@ typedef struct
 #define GPIOH_PCLK_EN() (RCC->AHB1ENR |= (1 << 7))
 
 // CLOCK ENABLE MACROS FOR I2Cx PERIPHERALS
-#define I2C1_PCLK_EN() (RCC->ABP1ENR |= (1 << 21))
-#define I2C2_PCLK_EN() (RCC->ABP1ENR |= (1 << 22))
-#define I2C3_PCLK_EN() (RCC->ABP1ENR |= (1 << 23))
+#define I2C1_PCLK_EN() (RCC->APB1ENR |= (1 << 21))
+#define I2C2_PCLK_EN() (RCC->APB1ENR |= (1 << 22))
+#define I2C3_PCLK_EN() (RCC->APB1ENR |= (1 << 23))
 
 // CLOCK ENABLE MACROS FOR SPIx PERIPHERALS
 #define SPI1_PCLK_EN() (RCC->APB2ENR |= (1 << 12))
@@ -387,9 +387,9 @@ typedef struct
 #define GPIOH_PCLK_DI() (RCC->AHB1ENR &= ~(1 << 7))
 
 // CLOCK DISABLE MACROS FOR I2Cx PERIPHERALS
-#define I2C1_PCLK_DI() (RCC->ABP1ENR &= ~(1 << 21))
-#define I2C2_PCLK_DI() (RCC->ABP1ENR &= ~(1 << 22))
-#define I2C3_PCLK_DI() (RCC->ABP1ENR &= ~(1 << 23))
+#define I2C1_PCLK_DI() (RCC->APB1ENR &= ~(1 << 21))
+#define I2C2_PCLK_DI() (RCC->APB1ENR &= ~(1 << 22))
+#define I2C3_PCLK_DI() (RCC->APB1ENR &= ~(1 << 23))
 
 // CLOCK DISABLE MACROS FOR SPIx PERIPHERALS
 #define SPI1_PCLK_DI() (RCC->APB2ENR &= ~(1 << 12))

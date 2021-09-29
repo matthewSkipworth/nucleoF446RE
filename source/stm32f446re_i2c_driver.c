@@ -104,9 +104,35 @@ void I2C_Init(I2C_Handle_t* pHandle)
 
 }
 
+void I2C_Master_Transmit_Byte(I2C_Handle_t* pHandle, uint8_t slave_addr, uint8_t data)
+{
+    // 1. Start condition, Enable START bit
+    pHandle->pI2Cx->CR1 |= (1<<I2C_CR1_START_BIT);
+
+    // 2. SB=1, cleared by reading SR1 register followed by writing DR register with address.
+    uint32_t temp = pHandle->pI2Cx->SR1;
+    pHandle->pI2Cx->DR = slave_addr << 1;
+    while (pHandle->pI2Cx->CR1 & (1 << I2C_CR1_START_BIT)); //wait until START bit cleared.
+
+    // 3. ADDR=1, cleared by reading SR1 register followed by reading SR2.
+    temp = pHandle->pI2Cx->SR1;
+    uint32_t temp = pHandle->pI2Cx->SR2;
+    while (pHandle->pI2Cx->SR1 & (1 << I2C_SR1_ADDR_BIT)); // wait until ADDR bit cleared.
+    
+    // 4. TxE=1, shift register empty, data register empty, write Data1 in DR.
+    while (!(pHandle->pI2Cx->SR1 & (1 << I2C_SR1_TXE_BIT))); // wait until TxE bit set
+    pHandle->pI2Cx->DR = data;
+    // 5. TxE-1, shift register not empty, data register empty, cleared by writing DR register.
+    // 6. TxE=1, BTF=1, Program stop request, TxE and BTF are cleared by hardware by the stop condition.
+    while (!(pHandle->pI2Cx->SR1 & (1 << I2C_SR1_TXE_BIT))); // wait until TxE bit set
+    while (!(pHandle->pI2Cx->SR1 & (1 << I2C_SR1_BTF_BIT))); // wait until BTF bit set
+    pHandle->pI2Cx->CR1 |= (1 << I2C_CR1_STOP_BIT);
+
+}
+
 uint32_t RCC_GetPLLOutputClock(void)
 {
-    return;
+    return 0;
 }
 
 /**

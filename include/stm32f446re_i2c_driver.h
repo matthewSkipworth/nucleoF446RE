@@ -51,7 +51,7 @@ typedef struct
 #define I2C_CR1_ENPEC_BIT       5
 #define I2C_CR1_ENGC_BIT        6
 #define I2C_CR1_NOSTRETCH_BIT   7
-#define I2C_CR1_PE_START_BIT    8
+#define I2C_CR1_START_BIT       8
 #define I2C_CR1_STOP_BIT        9
 #define I2C_CR1_ACK_BIT         10
 #define I2C_CR1_POS_BIT         11
@@ -121,7 +121,7 @@ void I2C_PeriClockControl(I2C_regDef_t* pI2Cx, uint8_t ENorDI);
 void I2C_PeripheralControl(I2C_regDef_t* pI2Cx, uint8_t ENorDI);
 
 void I2C_Init(I2C_Handle_t* pHandle);
-void I2C_Master_Transmit();
+void I2C_Master_Transmit_Byte(I2C_Handle_t* pHandle, uint8_t slave_addr, uint8_t data);
 void I2C_Master_Recieve();
 void I2C_Slave_Transmit();
 void I2C_Slave_Recieve();

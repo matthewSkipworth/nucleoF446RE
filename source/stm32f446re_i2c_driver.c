@@ -54,11 +54,13 @@ void I2C_Init(I2C_Handle_t* pHandle)
     //4 enable the Acking.
     //5 configure the rise time fo the i2C pins
     uint32_t tempreg = 0;
-
+    // CR1 CALCULATIONS
     tempreg |= (pHandle->I2C_Config.ACK_Control << I2C_CR1_ACK_BIT);
     pHandle->pI2Cx->CR1 |= tempreg;
 
     tempreg = 0;
+    
+    // CR2 CALCULATIONS
     tempreg |= RCC_getPCLK1Value() / 1000000U;
 
     pHandle->pI2Cx->CR2 = (tempreg & 0x3F); //FREQ bit field.
@@ -68,14 +70,17 @@ void I2C_Init(I2C_Handle_t* pHandle)
     pHandle->pI2Cx->OAR1 = tempreg;
 
     tempreg = 0;
+    //CCR CALCULATIONS
     uint16_t ccr_value = 0;
+
     if (pHandle->I2C_Config.SCL_Speed <= I2C_SCL_SPEED_SM)
     {
-        //mode is standard mode
+        //CCR mode is standard mode
         // pHandle->pI2Cx->CCR = RCC_getPCLK1Value() / (2 * pHandle->I2C_Config.SCL_Speed);
         ccr_value = RCC_getPCLK1Value() / (2 * pHandle->I2C_Config.SCL_Speed);
-        tempreg |= (ccr_value & 0xFFF);
+        tempreg |= (ccr_value & 0xFFF); // CCR FIRST 12 BITS ONLY
     }
+
     else
     {
         //mode is fast mode
@@ -90,9 +95,11 @@ void I2C_Init(I2C_Handle_t* pHandle)
         {
             ccr_value = (RCC_getPCLK1Value() / (25 * pHandle->I2C_Config.SCL_Speed));
         }
-        tempreg |= (ccr_value & 0xFFF);
+        tempreg |= (ccr_value & 0xFFF); // CCR FIRST 12 BITS ONLY
     }
+    pHandle->pI2Cx->CCR = tempreg;
 
+    // TODO: TRISE CALCULATIONS
 
 
 }
